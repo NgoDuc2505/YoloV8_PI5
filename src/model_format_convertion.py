@@ -13,7 +13,7 @@ def convert_modelv5_to_onnx(model_path, output_path):
 
 def convert_modelv8_to_onnx(model_path, output_path):
     model = YOLO(model_path)
-    model.export(format="onnx", imgsz=640, opset=12, dynamic=True, simplify=True, export_path=output_path)
+    model.export(format="onnx", imgsz=640, opset=12, dynamic=True, simplify=True)
 
 def convert_onnx_to_tf(onnx_path, tf_out_path="yolov8_model_tf"):
     onnx_model = onnx.load(onnx_path)
@@ -37,4 +37,6 @@ def full_flow_convert_model(model_path_pt, output_path):
     convert_onnx_to_tf(out_onnx_path, out_tf_path)
     convert_tf_to_tflite(out_tflite_path)
 
-full_flow_convert_model("models/yolov8n.pt", "converted_models")
+# full_flow_convert_model("models/yolov8n.pt", "converted_models")
+# convert_modelv8_to_onnx("models/yolov8n.pt", "converted_models/yolov8n.onnx")
+convert_onnx_to_tf("converted_models/yolov8n.onnx", "converted_models/yolov8n_tf")

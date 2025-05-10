@@ -1,13 +1,15 @@
 import cv2
 from ultralytics import YOLO
 
+
+
 def detect_objects():
     # Tải mô hình YOLOv8n đã được huấn luyện sẵn
     model = YOLO('yolov8n.pt')
 
     # Mở camera (0 cho camera mặc định)
-    # cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
 
     while True:
         ret, frame = cap.read()
